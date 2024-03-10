@@ -1,10 +1,16 @@
 import "./NumberField.css";
 
-function NumberField({ name }) {
+function NumberField({ name, value, changeHandler }) {
 	return (
 		<label>
 			{name}
-			<input type="number" name={name} id={name} />
+			<input
+				type="number"
+				name={name}
+				id={name}
+				value={value}
+				onChange={changeHandler}
+			/>
 		</label>
 	);
 }

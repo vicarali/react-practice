@@ -5,6 +5,7 @@ label {
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
+  flex-basis: calc(50% - var(--inputs-gap) / 2);
 }
 
 input {
