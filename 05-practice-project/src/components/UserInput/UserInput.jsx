@@ -1,23 +1,13 @@
 import NumberField from "../NumberField/NumberField";
 import "./UserInput.css";
-import { useState } from "react";
 
-const initialValues = {
-	initialInvestment: 0,
-	annualInvestment: 0,
-	expectedReturn: 0,
-	duration: 0
-};
-
-function UserInput() {
-	const [fieldValues, setFieldValues] = useState(initialValues);
-
+function UserInput({ fieldValues, setFieldValues }) {
 	function handleNumberChange(event) {
 		const input = event.target;
 
 		setFieldValues((prevFieldValues) => {
 			let newFieldValues = { ...prevFieldValues };
-			newFieldValues[input.name] = input.value;
+			newFieldValues[input.name] = Number(input.value);
 			return newFieldValues;
 		});
 	}
