@@ -15,7 +15,15 @@ export default function ResultsTable({ fieldValues }) {
 	});
 
 	const investmentResults = calculateInvestmentResults(fieldValues);
-	const tableRows = investmentResults.map(getRowFromInvestmentResult);
+  let tableRows = (
+		<tr>
+			<td className="center" colSpan={5}>
+				The duration must be higher than 0
+			</td>
+		</tr>
+	);
+	if (fieldValues.duration > 0)
+		tableRows = investmentResults.map(getRowFromInvestmentResult);
 
 	return (
 		<table id="result">
