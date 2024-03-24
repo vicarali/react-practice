@@ -1,8 +1,8 @@
 function App() {
   return (
 		<>
-			<aside className="projects-listing"></aside>
-			<h1 className="my-8 text-center text-5xl font-bold">Hello World</h1>
+			<aside className="sidebar"></aside>
+			<main className="project-view"></main>
 		</>
 	);
 }
