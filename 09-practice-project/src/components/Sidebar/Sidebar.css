@@ -1,0 +1,6 @@
+.sidebar {
+  flex-basis: 25%;
+  height: 100vh;
+  background-color: slategray;
+  border-top-right-radius: 20px;
+}

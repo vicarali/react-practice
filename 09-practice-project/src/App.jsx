@@ -1,7 +1,9 @@
+import Sidebar from "./components/Sidebar/Sidebar";
+
 function App() {
-  return (
+	return (
 		<>
-			<aside className="sidebar"></aside>
+			<Sidebar />
 			<main className="project-view"></main>
 		</>
 	);

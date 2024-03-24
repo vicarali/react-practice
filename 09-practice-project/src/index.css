@@ -7,13 +7,6 @@ body {
   gap: 50px;
 }
 
-.sidebar {
-  flex-basis: 25%;
-  height: 100vh;
-  background-color: slategray;
-  border-top-right-radius: 20px;
-}
-
 .project-view {
   flex-basis: 75%;
   height: 100vh;
