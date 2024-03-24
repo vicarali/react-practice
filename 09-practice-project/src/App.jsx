@@ -1,10 +1,11 @@
+import ProjectView from "./components/ProjectView/ProjectView";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
 	return (
 		<>
 			<Sidebar />
-			<main className="project-view"></main>
+			<ProjectView />
 		</>
 	);
 }

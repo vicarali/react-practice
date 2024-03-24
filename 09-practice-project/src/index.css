@@ -6,8 +6,3 @@ body {
   display: flex;
   gap: 50px;
 }
-
-.project-view {
-  flex-basis: 75%;
-  height: 100vh;
-}
