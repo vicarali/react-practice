@@ -4,12 +4,13 @@
   background-color: black;
   border-top-right-radius: 20px;
   padding-inline: 50px;
-  padding-top: 75px;
+  padding-top: 100px;
 }
 
 .sidebar__title {
   font-weight: bold;
   color: white;
+  margin-top: unset;
 }
 
 .sidebar__button {

@@ -1,0 +1,13 @@
+.task-input__field {
+  height: 2rem;
+  width: 250px;
+  padding-left: 5px;
+}
+
+.task-input__btn {
+  border: unset;
+  font-size: 1rem;
+  background: unset;
+  margin-left: 10px;
+  cursor: pointer;
+}

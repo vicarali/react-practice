@@ -1,0 +1,29 @@
+.project-summary {
+  position: relative;
+  color: darkslategray;
+}
+
+.project-summary__title {
+  margin-top: unset;
+  margin-bottom: unset;
+}
+
+.project-summary__date {
+  margin-top: 10px;
+  display: block;
+  color: gray;
+}
+
+.project-summary__description {
+  margin-top: 25px;
+}
+
+.project-summary__delete-btn {
+  border: unset;
+  background: unset;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  font-size: 1rem;
+}
