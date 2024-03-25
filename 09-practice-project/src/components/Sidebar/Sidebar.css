@@ -12,18 +12,3 @@
   color: white;
   margin-top: unset;
 }
-
-.sidebar__button {
-  color: lightgrey;
-  background-color: darkgrey;
-  border: unset;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 25px;
-}
-
-.sidebar__button:hover {
-  color: darkgrey;
-  background-color: cornsilk;
-}

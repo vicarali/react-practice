@@ -1,0 +1,13 @@
+.add-project-button {
+  color: white;
+  background-color: grey;
+  border: unset;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 25px;
+}
+
+.add-project-button:hover {
+  background-color: darkgray;
+}

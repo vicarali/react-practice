@@ -4,10 +4,10 @@ import "./ProjectView.css";
 
 export default function ProjectView() {
 	return (
-		<main className="project-view">
+		<div className="project-view">
 			<ProjectSummary />
 			<hr></hr>
 			<TasksView />
-		</main>
+		</div>
 	);
 }
