@@ -1,0 +1,22 @@
+.projects-listing {
+  margin-top: 50px;
+  list-style-type: none;
+  padding-left: unset;
+}
+
+.projects-listing__item {
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+
+.projects-listing__item:not(:first-of-type) {
+  margin-top: 10px;
+}
+
+.projects-listing__item:hover,
+.projects-listing__item--active {
+  background-color: darkgrey;
+}

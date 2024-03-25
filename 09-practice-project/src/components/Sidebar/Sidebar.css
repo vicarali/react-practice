@@ -1,6 +1,28 @@
 .sidebar {
   flex-basis: 25%;
   height: 100vh;
-  background-color: slategray;
+  background-color: black;
   border-top-right-radius: 20px;
+  padding-inline: 50px;
+  padding-top: 75px;
+}
+
+.sidebar__title {
+  font-weight: bold;
+  color: white;
+}
+
+.sidebar__button {
+  color: lightgrey;
+  background-color: darkgrey;
+  border: unset;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 25px;
+}
+
+.sidebar__button:hover {
+  color: darkgrey;
+  background-color: cornsilk;
 }
