@@ -20,4 +20,5 @@ body {
   height: 100vh;
   padding-top: 100px;
   padding-right: 250px;
+  position: relative;
 }

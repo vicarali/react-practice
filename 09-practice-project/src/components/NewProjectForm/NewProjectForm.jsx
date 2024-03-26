@@ -11,11 +11,13 @@ export default function NewProjectForm({ open }) {
 			</div>
 
 			<form className="new-project-form__form">
-				<label>
+				<label className="new-project-form__label">
+					TITLE
 					<input type="text" id="title" />
 				</label>
 
-				<label>
+				<label className="new-project-form__label">
+					DESCRIPTION
 					<textarea
 						className="new-project-form__description"
 						id="description"
@@ -23,7 +25,8 @@ export default function NewProjectForm({ open }) {
 					></textarea>
 				</label>
 
-				<label>
+				<label className="new-project-form__label">
+					DUE DATE
 					<input type="date" id="date" />
 				</label>
 			</form>
