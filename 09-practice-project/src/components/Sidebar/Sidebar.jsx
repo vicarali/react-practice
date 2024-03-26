@@ -1,13 +1,21 @@
 import AddProjectButton from "../AddProjectButton/AddProjectButton";
 import ProjectsListing from "../ProjectsListing/ProjectsListing";
+import NewProjectForm from "../NewProjectForm/NewProjectForm";
+import { createPortal } from "react-dom";
 import "./Sidebar.css";
 
 export default function Sidebar() {
 	return (
-		<aside className="sidebar">
-			<h2 className="sidebar__title">YOUR PROJECTS</h2>
-			<AddProjectButton>+ Add Project</AddProjectButton>
-			<ProjectsListing />
-		</aside>
+		<>
+			{createPortal(
+				<>
+					<h2 className="sidebar__title">YOUR PROJECTS</h2>
+					<AddProjectButton>+ Add Project</AddProjectButton>
+					<ProjectsListing />
+					<NewProjectForm />
+				</>,
+				document.getElementById("sidebar")
+			)}
+		</>
 	);
 }
