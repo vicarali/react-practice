@@ -1,5 +1,12 @@
 import "./AddProjectButton.css";
 
-export default function AddProjectButton({ children }) {
-	return <button className="add-project-button">{children}</button>;
+export default function AddProjectButton({ children, newProjectForm }) {
+	return (
+		<button
+			className="add-project-button"
+			onClick={() => newProjectForm.current.toggle()}
+		>
+			{children}
+		</button>
+	);
 }

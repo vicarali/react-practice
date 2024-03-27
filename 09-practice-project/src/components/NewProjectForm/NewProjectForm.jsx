@@ -1,11 +1,26 @@
 import "./NewProjectForm.css";
 import { createPortal } from "react-dom";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 
-export default function NewProjectForm({ open }) {
+const NewProjectForm = forwardRef(function NewProjectForm(props, ref) {
+	const formRef = useRef();
+
+	useImperativeHandle(ref, () => {
+		return {
+			toggle() {
+				if (formRef.current.open) {
+					formRef.current.close();
+				} else {
+					formRef.current.show();
+				}
+			}
+		};
+	});
+
 	return (
 		<>
 			{createPortal(
-				<dialog className="new-project-form" open={open}>
+				<dialog className="new-project-form" ref={formRef}>
 					<div className="new-project-form__buttons-wrapper">
 						<form method="dialog">
 							<button>Cancel</button>
@@ -38,4 +53,6 @@ export default function NewProjectForm({ open }) {
 			)}
 		</>
 	);
-}
+});
+
+export default NewProjectForm;

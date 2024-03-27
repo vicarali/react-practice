@@ -3,7 +3,7 @@ import noProjectsImg from "../../assets/no-projects.png";
 import AddProjectButton from "../AddProjectButton/AddProjectButton";
 import { createPortal } from "react-dom";
 
-export default function StartView() {
+export default function StartView({ newProjectForm }) {
 	return (
 		<>
 			{createPortal(
@@ -13,7 +13,9 @@ export default function StartView() {
 					<p className="start-view__subtitle">
 						Select a project or get started with a new one
 					</p>
-					<AddProjectButton>Create new project</AddProjectButton>
+					<AddProjectButton newProjectForm={newProjectForm}>
+						Create new project
+					</AddProjectButton>
 				</div>,
 				document.getElementById("main-view")
 			)}
