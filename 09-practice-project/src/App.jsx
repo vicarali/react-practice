@@ -6,6 +6,7 @@ import NewProjectForm from "./components/NewProjectForm/NewProjectForm";
 
 function App() {
 	const [projects, setProjects] = useState([]);
+	const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 	const newProjectForm = useRef();
 
 	function addProject(project) {
@@ -17,12 +18,20 @@ function App() {
 		newProjectForm.current.toggle();
 	}
 
+	// function removeProject(project) {
+	// 	let listOfProjects = [];
+	// 	if (projects.length > 0) listOfProjects.push(...projects);
+
+	// 	const indexOfProject = listOfProjects.indexOf(project);
+	// 	listOfProjects.splice(indexOfProject, 1);
+	// }
+
 	return (
 		<>
 			<Sidebar newProjectForm={newProjectForm} projectsListing={projects} />
 
 			{projects.length > 0 ? (
-				<ProjectView />
+				<ProjectView currentProject={projects[currentProjectIndex]} />
 			) : (
 				<StartView newProjectForm={newProjectForm} />
 			)}

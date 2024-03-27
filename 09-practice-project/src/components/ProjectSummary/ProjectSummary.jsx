@@ -1,14 +1,14 @@
 import "./ProjectSummary.css";
 
-export default function ProjectSummary() {
+export default function ProjectSummary({ currentProject }) {
 	return (
 		<header className="project-summary">
-			<h1 className="project-summary__title">Learning React</h1>
+			<h1 className="project-summary__title">{currentProject.title}</h1>
 			<time dateTime="2024-03-25" className="project-summary__date">
-				2024-03-25
+				{currentProject.dueDate}
 			</time>
 			<p className="project-summary__description">
-				Lorem ipsum dolor sit amet, consectetur adipiscit elit.
+				{currentProject.description}
 			</p>
 			<button className="project-summary__delete-btn">Delete</button>
 		</header>

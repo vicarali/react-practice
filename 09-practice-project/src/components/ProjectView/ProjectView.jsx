@@ -3,12 +3,12 @@ import TasksView from "../TasksView/TasksView";
 import { createPortal } from "react-dom";
 import "./ProjectView.css";
 
-export default function ProjectView() {
+export default function ProjectView({ currentProject }) {
 	return (
 		<>
 			{createPortal(
 				<div className="project-view">
-					<ProjectSummary />
+					<ProjectSummary currentProject={currentProject} />
 					<hr></hr>
 					<TasksView />
 				</div>,
