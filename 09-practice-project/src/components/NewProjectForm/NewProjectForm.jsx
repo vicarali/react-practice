@@ -2,7 +2,7 @@ import "./NewProjectForm.css";
 import { createPortal } from "react-dom";
 import { forwardRef, useImperativeHandle, useRef } from "react";
 
-const NewProjectForm = forwardRef(function NewProjectForm(props, ref) {
+const NewProjectForm = forwardRef(function NewProjectForm({ onSaveForm }, ref) {
 	const formRef = useRef();
 
 	useImperativeHandle(ref, () => {
@@ -17,6 +17,18 @@ const NewProjectForm = forwardRef(function NewProjectForm(props, ref) {
 		};
 	});
 
+	const projectTitleRef = useRef();
+	const projectDescriptionRef = useRef();
+	const projectDueDateRef = useRef();
+
+	function constructProject() {
+		return {
+			projectTitle: projectTitleRef.current.value,
+			projectDescription: projectDescriptionRef.current.value,
+			projectDueDate: projectDueDateRef.current.value
+		};
+	}
+
 	return (
 		<>
 			{createPortal(
@@ -25,13 +37,18 @@ const NewProjectForm = forwardRef(function NewProjectForm(props, ref) {
 						<form method="dialog">
 							<button>Cancel</button>
 						</form>
-						<button className="new-project-form__save">Save</button>
+						<button
+							className="new-project-form__save"
+							onClick={() => onSaveForm(constructProject())}
+						>
+							Save
+						</button>
 					</div>
 
 					<form className="new-project-form__form">
 						<label className="new-project-form__label">
 							TITLE
-							<input type="text" id="title" />
+							<input type="text" id="title" ref={projectTitleRef} />
 						</label>
 
 						<label className="new-project-form__label">
@@ -40,12 +57,13 @@ const NewProjectForm = forwardRef(function NewProjectForm(props, ref) {
 								className="new-project-form__description"
 								id="description"
 								rows="3"
+								ref={projectDescriptionRef}
 							></textarea>
 						</label>
 
 						<label className="new-project-form__label">
 							DUE DATE
-							<input type="date" id="date" />
+							<input type="date" id="date" ref={projectDueDateRef} />
 						</label>
 					</form>
 				</dialog>,
