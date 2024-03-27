@@ -5,12 +5,12 @@ import StartView from "./components/StartView/StartView";
 import NewProjectForm from "./components/NewProjectForm/NewProjectForm";
 
 function App() {
-	const [projects, setProjects] = useState();
+	const [projects, setProjects] = useState([]);
 	const newProjectForm = useRef();
 
 	function addProject(project) {
 		let listOfProjects = [];
-		if (projects) listOfProjects.push(...projects);
+		if (projects.length > 0) listOfProjects.push(...projects);
 
 		listOfProjects.push(project);
 		setProjects(listOfProjects);
@@ -19,9 +19,9 @@ function App() {
 
 	return (
 		<>
-			<Sidebar newProjectForm={newProjectForm} />
+			<Sidebar newProjectForm={newProjectForm} projectsListing={projects} />
 
-			{projects ? (
+			{projects.length > 0 ? (
 				<ProjectView />
 			) : (
 				<StartView newProjectForm={newProjectForm} />
