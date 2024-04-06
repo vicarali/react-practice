@@ -6,7 +6,6 @@ import NewProjectForm from "./components/NewProjectForm/NewProjectForm";
 
 function App() {
 	const [projects, setProjects] = useState([]);
-	const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 	const newProjectForm = useRef();
 
 	function addProject(project) {
@@ -26,9 +25,23 @@ function App() {
 	// 	listOfProjects.splice(indexOfProject, 1);
 	// }
 
+	const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+
+	function handleProjectChange(projectTitle) {
+		const indexOfProject = projects.findIndex(
+			(project) => project.title == projectTitle
+		);
+
+		setCurrentProjectIndex(indexOfProject);
+	}
+
 	return (
 		<>
-			<Sidebar newProjectForm={newProjectForm} projectsListing={projects} />
+			<Sidebar
+				newProjectForm={newProjectForm}
+				projectsListing={projects}
+				onProjectChange={handleProjectChange}
+			/>
 
 			{projects.length > 0 ? (
 				<ProjectView currentProject={projects[currentProjectIndex]} />

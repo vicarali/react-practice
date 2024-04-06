@@ -4,7 +4,11 @@ import NewProjectForm from "../NewProjectForm/NewProjectForm";
 import { createPortal } from "react-dom";
 import "./Sidebar.css";
 
-export default function Sidebar({ newProjectForm, projectsListing }) {
+export default function Sidebar({
+	newProjectForm,
+	projectsListing,
+	onProjectChange
+}) {
 	return (
 		<>
 			{createPortal(
@@ -13,7 +17,10 @@ export default function Sidebar({ newProjectForm, projectsListing }) {
 					<AddProjectButton newProjectForm={newProjectForm}>
 						+ Add Project
 					</AddProjectButton>
-					<ProjectsListing projectsListing={projectsListing} />
+					<ProjectsListing
+						projectsListing={projectsListing}
+						onProjectChange={onProjectChange}
+					/>
 				</>,
 				document.getElementById("sidebar")
 			)}
