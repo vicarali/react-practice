@@ -1,13 +1,19 @@
 import "./ProjectsListing.css";
 
-export default function ProjectsListing({ projectsListing, onProjectChange }) {
+export default function ProjectsListing({
+	projectsListing,
+	onProjectChange,
+	currentProject
+}) {
 	return (
 		<ul className="projects-listing">
-			{projectsListing.map((project) => {
+			{projectsListing.map((project, index) => {
 				return (
 					<li
 						key={project.title}
-						className="projects-listing__item"
+						className={`projects-listing__item${
+							currentProject == index ? " projects-listing__item--active" : ""
+						}`}
 						onClick={() => {
 							onProjectChange(project.title);
 						}}

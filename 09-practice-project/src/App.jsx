@@ -41,6 +41,7 @@ function App() {
 				newProjectForm={newProjectForm}
 				projectsListing={projects}
 				onProjectChange={handleProjectChange}
+				currentProject={currentProjectIndex}
 			/>
 
 			{projects.length > 0 ? (

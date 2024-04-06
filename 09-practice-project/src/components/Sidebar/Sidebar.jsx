@@ -7,7 +7,8 @@ import "./Sidebar.css";
 export default function Sidebar({
 	newProjectForm,
 	projectsListing,
-	onProjectChange
+	onProjectChange,
+	currentProject
 }) {
 	return (
 		<>
@@ -20,6 +21,7 @@ export default function Sidebar({
 					<ProjectsListing
 						projectsListing={projectsListing}
 						onProjectChange={onProjectChange}
+						currentProject={currentProject}
 					/>
 				</>,
 				document.getElementById("sidebar")
