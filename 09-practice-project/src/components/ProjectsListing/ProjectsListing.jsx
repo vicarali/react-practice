@@ -10,7 +10,7 @@ export default function ProjectsListing({
 			{projectsListing.map((project, index) => {
 				return (
 					<li
-						key={project.title}
+						key={index}
 						className={`projects-listing__item${
 							currentProject == index ? " projects-listing__item--active" : ""
 						}`}

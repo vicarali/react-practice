@@ -8,6 +8,7 @@ function App() {
 	const [projects, setProjects] = useState([]);
 	const newProjectForm = useRef();
 
+	/* Projects addition/removal */
 	function addProject(project) {
 		let listOfProjects = [];
 		if (projects.length > 0) listOfProjects.push(...projects);
@@ -17,22 +18,29 @@ function App() {
 		newProjectForm.current.toggle();
 	}
 
-	// function removeProject(project) {
-	// 	let listOfProjects = [];
-	// 	if (projects.length > 0) listOfProjects.push(...projects);
+	function handleProjectRemoval(projectTitle) {
+		let listOfProjects = [];
+		if (projects.length > 0) listOfProjects.push(...projects);
 
-	// 	const indexOfProject = listOfProjects.indexOf(project);
-	// 	listOfProjects.splice(indexOfProject, 1);
-	// }
+		const indexOfProject = getProjectIndexByTitle(projectTitle);
+		listOfProjects.splice(indexOfProject, 1);
 
+		if (listOfProjects.length > 0 == indexOfProject > 0)
+			setCurrentProjectIndex(indexOfProject - 1);
+		setProjects(listOfProjects);
+	}
+
+	/* Active project change */
 	const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
 	function handleProjectChange(projectTitle) {
-		const indexOfProject = projects.findIndex(
-			(project) => project.title == projectTitle
-		);
+		const indexOfProject = getProjectIndexByTitle(projectTitle);
 
 		setCurrentProjectIndex(indexOfProject);
+	}
+
+	function getProjectIndexByTitle(projectTitle) {
+		return projects.findIndex((project) => project.title == projectTitle);
 	}
 
 	return (
@@ -45,7 +53,10 @@ function App() {
 			/>
 
 			{projects.length > 0 ? (
-				<ProjectView currentProject={projects[currentProjectIndex]} />
+				<ProjectView
+					currentProject={projects[currentProjectIndex]}
+					onProjectRemoval={handleProjectRemoval}
+				/>
 			) : (
 				<StartView newProjectForm={newProjectForm} />
 			)}

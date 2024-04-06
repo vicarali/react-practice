@@ -1,6 +1,6 @@
 import "./ProjectSummary.css";
 
-export default function ProjectSummary({ currentProject }) {
+export default function ProjectSummary({ currentProject, onProjectRemoval }) {
 	return (
 		<header className="project-summary">
 			<h1 className="project-summary__title">{currentProject.title}</h1>
@@ -10,7 +10,12 @@ export default function ProjectSummary({ currentProject }) {
 			<p className="project-summary__description">
 				{currentProject.description}
 			</p>
-			<button className="project-summary__delete-btn">Delete</button>
+			<button
+				className="project-summary__delete-btn"
+				onClick={() => onProjectRemoval(currentProject.title)}
+			>
+				Delete
+			</button>
 		</header>
 	);
 }
