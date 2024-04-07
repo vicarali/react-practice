@@ -30,6 +30,16 @@ function App() {
 		setProjects(listOfProjects);
 	}
 
+	/* Project tasks addition/removal */
+	function addTask(task, projectTitle) {
+		let listOfProjects = [];
+		if (projects.length > 0) listOfProjects.push(...projects);
+		const projectIndex = getProjectIndexByTitle(projectTitle);
+
+		listOfProjects[projectIndex].tasks.push(task);
+		setProjects(listOfProjects);
+	}
+
 	/* Active project change */
 	const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
@@ -56,6 +66,7 @@ function App() {
 				<ProjectView
 					currentProject={projects[currentProjectIndex]}
 					onProjectRemoval={handleProjectRemoval}
+					addTask={addTask}
 				/>
 			) : (
 				<StartView newProjectForm={newProjectForm} />

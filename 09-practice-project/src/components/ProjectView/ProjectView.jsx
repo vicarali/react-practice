@@ -3,7 +3,11 @@ import TasksView from "../TasksView/TasksView";
 import { createPortal } from "react-dom";
 import "./ProjectView.css";
 
-export default function ProjectView({ currentProject, onProjectRemoval }) {
+export default function ProjectView({
+	currentProject,
+	onProjectRemoval,
+	addTask
+}) {
 	return (
 		<>
 			{createPortal(
@@ -13,7 +17,7 @@ export default function ProjectView({ currentProject, onProjectRemoval }) {
 						onProjectRemoval={onProjectRemoval}
 					/>
 					<hr></hr>
-					<TasksView />
+					<TasksView currentProject={currentProject} addTask={addTask} />
 				</div>,
 				document.getElementById("main-view")
 			)}

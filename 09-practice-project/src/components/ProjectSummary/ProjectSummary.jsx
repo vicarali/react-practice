@@ -11,7 +11,7 @@ export default function ProjectSummary({ currentProject, onProjectRemoval }) {
 				{currentProject.description}
 			</p>
 			<button
-				className="project-summary__delete-btn"
+				className="delete-btn"
 				onClick={() => onProjectRemoval(currentProject.title)}
 			>
 				Delete

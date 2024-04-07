@@ -25,7 +25,8 @@ const NewProjectForm = forwardRef(function NewProjectForm({ onSaveForm }, ref) {
 		return {
 			title: projectTitleRef.current.value,
 			description: projectDescriptionRef.current.value,
-			dueDate: projectDueDateRef.current.value
+			dueDate: projectDueDateRef.current.value,
+			tasks: []
 		};
 	}
 

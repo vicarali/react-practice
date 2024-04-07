@@ -1,10 +1,20 @@
 import "./TaskInput.css";
+import { useRef } from "react";
 
-export default function TaskInput() {
+export default function TaskInput({ currentProject, addTask }) {
+	const taskInput = useRef();
+
+	function handleAddTask() {
+		const taskInputTitle = taskInput.current.value;
+		addTask(taskInputTitle, currentProject.title);
+	}
+
 	return (
 		<div className="task-input">
-			<input type="text" className="task-input__field" />
-			<button className="task-input__btn">Add Task</button>
+			<input ref={taskInput} type="text" className="task-input__field" />
+			<button className="task-input__btn" onClick={handleAddTask}>
+				Add Task
+			</button>
 		</div>
 	);
 }
