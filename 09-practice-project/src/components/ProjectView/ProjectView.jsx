@@ -6,7 +6,8 @@ import "./ProjectView.css";
 export default function ProjectView({
 	currentProject,
 	onProjectRemoval,
-	addTask
+	addTask,
+	removeTask
 }) {
 	return (
 		<>
@@ -17,7 +18,11 @@ export default function ProjectView({
 						onProjectRemoval={onProjectRemoval}
 					/>
 					<hr></hr>
-					<TasksView currentProject={currentProject} addTask={addTask} />
+					<TasksView
+						currentProject={currentProject}
+						addTask={addTask}
+						removeTask={removeTask}
+					/>
 				</div>,
 				document.getElementById("main-view")
 			)}

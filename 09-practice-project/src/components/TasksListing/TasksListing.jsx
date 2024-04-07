@@ -1,15 +1,18 @@
 import "./TasksListing.css";
 
-export default function TasksListing({ tasks }) {
+export default function TasksListing({ currentProject, removeTask }) {
 	return (
 		<div className="tasks-listing">
-			{tasks.length > 0 ? (
+			{currentProject.tasks.length > 0 ? (
 				<ul className="tasks-listing__list">
-					{tasks.map((task, index) => {
+					{currentProject.tasks.map((task, index) => {
 						return (
 							<li key={index} className="tasks-listing__list-item">
 								<p>{task}</p>
-								<button className="delete-btn" key={index}>
+								<button
+									className="delete-btn"
+									onClick={() => removeTask(task, currentProject.title)}
+								>
 									Clear
 								</button>
 							</li>
