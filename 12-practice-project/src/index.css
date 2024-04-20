@@ -55,14 +55,6 @@ body {
   color: #a690c5;
 }
 
-#question-overview {
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 0.8rem;
-  color: #9082a3;
-  margin: 0;
-  text-transform: uppercase;
-}
-
 #question progress {
   width: 50%;
   height: 0.5rem;
@@ -91,14 +83,6 @@ body {
 
 #question progress.answered::-webkit-progress-bar {
   background: #6a558a;
-}
-
-#question h2 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
-  font-weight: normal;
-  margin: 0.5rem 0 2.5rem 0;
-  color: #c1b2dd;
 }
 
 #answers {
