@@ -1,28 +1,15 @@
 import "./Answers.css";
 
-export function Answers() {
+export function Answers({ children }) {
 	return (
 		<ul className="answers">
-			<li className="answers__item">
-				<button className="answers__button">
-					Lorem ipsum dolor sit amet consectetur adipiscing elit
-				</button>
-			</li>
-			<li className="answers__item">
-				<button className="answers__button">
-					Lorem ipsum dolor sit amet consectetur adipiscing elit
-				</button>
-			</li>
-			<li className="answers__item">
-				<button className="answers__button">
-					Lorem ipsum dolor sit amet consectetur adipiscing elit
-				</button>
-			</li>
-			<li className="answers__item">
-				<button className="answers__button">
-					Lorem ipsum dolor sit amet consectetur adipiscing elit
-				</button>
-			</li>
+			{children.map((answer, index) => {
+				return (
+					<li className="answers__item" key={index}>
+						<button className="answers__button">{answer}</button>
+					</li>
+				);
+			})}
 		</ul>
 	);
 }
