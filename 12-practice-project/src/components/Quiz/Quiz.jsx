@@ -2,10 +2,11 @@ import { Answers } from "../Answers/Answers";
 import { QuestionOverview } from "../QuestionOverview/QuestionOverview";
 import "./Quiz.css";
 import questions from "../../assets/questions";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function Quiz() {
 	const [step, setStep] = useState(0);
+	const answerButtons = useRef([]);
 
 	function verifyAnswer(answerID) {
 		const correctAnswerID = 0;
@@ -20,7 +21,9 @@ function Quiz() {
 	return (
 		<main className="quiz">
 			<QuestionOverview>{questions[step].text}</QuestionOverview>
-			<Answers advanceStep={verifyAnswer}>{questions[step].answers}</Answers>
+			<Answers verifyAnswer={verifyAnswer} ref={answerButtons}>
+				{questions[step].answers}
+			</Answers>
 		</main>
 	);
 }

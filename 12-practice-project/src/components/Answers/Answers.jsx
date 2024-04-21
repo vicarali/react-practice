@@ -1,6 +1,10 @@
 import "./Answers.css";
+import { forwardRef } from "react";
 
-export function Answers({ children, advanceStep: verifyAnswer }) {
+export const Answers = forwardRef(function Answers(
+	{ children, verifyAnswer },
+	ref
+) {
 	let answerItems = children.map((answer, index) => {
 		return (
 			<li className="answers__item" key={index}>
@@ -14,7 +18,7 @@ export function Answers({ children, advanceStep: verifyAnswer }) {
 	shuffleArray(answerItems);
 
 	return <ul className="answers">{answerItems}</ul>;
-}
+});
 
 function shuffleArray(array) {
 	for (let i = array.length - 1; i > 0; i--) {
