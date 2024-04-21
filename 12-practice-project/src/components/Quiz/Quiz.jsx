@@ -7,16 +7,16 @@ import { useState } from "react";
 function Quiz() {
 	const [step, setStep] = useState(0);
 
-	function handleSetStep() {
+	function advanceStep() {
 		setStep((previousStep) => {
-			return previousStep++;
+			return previousStep + 1;
 		});
 	}
 
 	return (
 		<main className="quiz">
 			<QuestionOverview>{questions[step].text}</QuestionOverview>
-			<Answers handleSetStep={handleSetStep}>{questions[step].answers}</Answers>
+			<Answers advanceStep={advanceStep}>{questions[step].answers}</Answers>
 		</main>
 	);
 }

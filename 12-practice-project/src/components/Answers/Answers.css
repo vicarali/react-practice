@@ -26,8 +26,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-.answers__button:hover,
-.answers__button:focus {
+.answers__button:hover {
   background: #9d5af5;
   color: white;
 }

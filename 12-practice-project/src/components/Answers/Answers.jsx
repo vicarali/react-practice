@@ -1,10 +1,14 @@
 import "./Answers.css";
 
-export function Answers({ children }) {
+export function Answers({ children, advanceStep }) {
 	let answerItems = children.map((answer, index) => {
 		return (
 			<li className="answers__item" key={index}>
-				<button className="answers__button" data-answer-id={index}>
+				<button
+					className="answers__button"
+					data-answer-id={index}
+					onClick={advanceStep}
+				>
 					{answer}
 				</button>
 			</li>
