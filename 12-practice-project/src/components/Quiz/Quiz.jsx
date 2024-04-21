@@ -7,16 +7,20 @@ import { useState } from "react";
 function Quiz() {
 	const [step, setStep] = useState(0);
 
-	function advanceStep() {
-		setStep((previousStep) => {
-			return previousStep + 1;
-		});
+	function verifyAnswer(answerID) {
+		const correctAnswerID = 0;
+
+		if (answerID === correctAnswerID) {
+			setStep((previousStep) => {
+				return previousStep + 1;
+			});
+		}
 	}
 
 	return (
 		<main className="quiz">
 			<QuestionOverview>{questions[step].text}</QuestionOverview>
-			<Answers advanceStep={advanceStep}>{questions[step].answers}</Answers>
+			<Answers advanceStep={verifyAnswer}>{questions[step].answers}</Answers>
 		</main>
 	);
 }

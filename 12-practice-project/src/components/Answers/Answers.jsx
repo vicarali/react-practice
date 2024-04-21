@@ -1,14 +1,10 @@
 import "./Answers.css";
 
-export function Answers({ children, advanceStep }) {
+export function Answers({ children, advanceStep: verifyAnswer }) {
 	let answerItems = children.map((answer, index) => {
 		return (
 			<li className="answers__item" key={index}>
-				<button
-					className="answers__button"
-					data-answer-id={index}
-					onClick={advanceStep}
-				>
+				<button className="answers__button" onClick={() => verifyAnswer(index)}>
 					{answer}
 				</button>
 			</li>
