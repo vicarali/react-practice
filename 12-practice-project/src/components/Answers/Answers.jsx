@@ -4,7 +4,9 @@ export function Answers({ children }) {
 	let answerItems = children.map((answer, index) => {
 		return (
 			<li className="answers__item" key={index}>
-				<button className="answers__button">{answer}</button>
+				<button className="answers__button" data-answer-id={index}>
+					{answer}
+				</button>
 			</li>
 		);
 	});
