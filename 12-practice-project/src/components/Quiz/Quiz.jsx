@@ -2,16 +2,15 @@ import { Answers } from "../Answers/Answers";
 import { QuestionOverview } from "../QuestionOverview/QuestionOverview";
 import "./Quiz.css";
 import questions from "../../assets/questions";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 function Quiz() {
-	const [step, setStep] = useState(0);
-	const answerButtons = useRef([]);
+	const [currentStep, setStep] = useState(0);
 
-	function verifyAnswer(answerID) {
-		const correctAnswerID = 0;
+	function verifyAnswer(answer) {
+		const correctAnswer = questions[currentStep].answers[0];
 
-		if (answerID === correctAnswerID) {
+		if (answer === correctAnswer) {
 			setStep((previousStep) => {
 				return previousStep + 1;
 			});
@@ -20,9 +19,11 @@ function Quiz() {
 
 	return (
 		<main className="quiz">
-			<QuestionOverview>{questions[step].text}</QuestionOverview>
-			<Answers verifyAnswer={verifyAnswer} ref={answerButtons}>
-				{questions[step].answers}
+			<QuestionOverview currentStep={currentStep}>
+				{questions[currentStep].text}
+			</QuestionOverview>
+			<Answers verifyAnswer={verifyAnswer}>
+				{questions[currentStep].answers}
 			</Answers>
 		</main>
 	);
