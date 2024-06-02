@@ -5,19 +5,21 @@ export function QuestionOverview({ children, currentStep }) {
 	const [timerProgress, setTimerProgress] = useState(100);
 
 	useEffect(() => {
-		const timerInterval = setInterval(() => {
-			setTimerProgress((previousProgress) => {
-				if (previousProgress > 0) {
-					return previousProgress - 1;
-				}
-			});
-		}, 100);
+		const timerInterval = setInterval(updateTimer, 100);
 
 		return () => {
 			setTimerProgress(100);
 			clearInterval(timerInterval);
 		};
 	}, [currentStep]);
+
+	function updateTimer() {
+		setTimerProgress((previousProgress) => {
+			if (previousProgress > 0) {
+				return previousProgress - 1;
+			}
+		});
+	}
 
 	return (
 		<div className="question-overview">
