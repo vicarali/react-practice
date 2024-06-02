@@ -11,15 +11,26 @@ function Quiz() {
 		const correctAnswer = questions[currentStep].answers[0];
 
 		if (answer === correctAnswer) {
-			setStep((previousStep) => {
-				return previousStep + 1;
-			});
+			goToNextStep();
 		}
+	}
+
+	function goToNextStepAfterTimeRanOut() {
+		setTimeout(goToNextStep, 1000);
+	}
+
+	function goToNextStep() {
+		setStep((previousStep) => {
+			return previousStep + 1;
+		});
 	}
 
 	return (
 		<main className="quiz">
-			<QuestionOverview currentStep={currentStep}>
+			<QuestionOverview
+				currentStep={currentStep}
+				goToNextStepAfterTimeRanOut={goToNextStepAfterTimeRanOut}
+			>
 				{questions[currentStep].text}
 			</QuestionOverview>
 			<Answers verifyAnswer={verifyAnswer}>
