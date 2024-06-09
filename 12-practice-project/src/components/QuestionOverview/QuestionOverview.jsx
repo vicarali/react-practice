@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 export function QuestionOverview({
 	children,
 	currentStep,
-	goToNextStepAfterTimeRanOut
+	goToNextStepAfterTimeRanOut,
+	timerProgress,
+	setTimerProgress
 }) {
-	const [timerProgress, setTimerProgress] = useState(100);
-
 	useEffect(() => {
 		const timerInterval = setInterval(updateTimer, 100);
 
@@ -23,7 +23,7 @@ export function QuestionOverview({
 				goToNextStepAfterTimeRanOut();
 			}
 
-			return previousProgress - 4;
+			return previousProgress - 1;
 		});
 	}
 

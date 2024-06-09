@@ -1,22 +1,20 @@
 import { Answers } from "../Answers/Answers";
 import { QuestionOverview } from "../QuestionOverview/QuestionOverview";
 import "./Quiz.css";
-import questions from "../../assets/questions";
 import { useState } from "react";
 
-function Quiz() {
+function Quiz({ shuffledQuestions, correctAnswers }) {
 	const [currentStep, setStep] = useState(0);
+	const [timerProgress, setTimerProgress] = useState(100);
 
 	function verifyAnswer(answer) {
-		const correctAnswer = questions[currentStep].answers[0];
-
-		if (answer === correctAnswer) {
+		if (correctAnswers.includes(answer)) {
 			goToNextStep();
 		}
 	}
 
 	function goToNextStepAfterTimeRanOut() {
-		setTimeout(goToNextStep, 1000);
+		goToNextStep();
 	}
 
 	function goToNextStep() {
@@ -30,11 +28,13 @@ function Quiz() {
 			<QuestionOverview
 				currentStep={currentStep}
 				goToNextStepAfterTimeRanOut={goToNextStepAfterTimeRanOut}
+				timerProgress={timerProgress}
+				setTimerProgress={setTimerProgress}
 			>
-				{questions[currentStep].text}
+				{shuffledQuestions[currentStep].text}
 			</QuestionOverview>
 			<Answers verifyAnswer={verifyAnswer}>
-				{questions[currentStep].answers}
+				{shuffledQuestions[currentStep].answers}
 			</Answers>
 		</main>
 	);
