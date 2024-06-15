@@ -11,13 +11,13 @@ export function QuestionOverview({
 }) {
 	let progressBarClasses = "question-overview__progress-bar";
 
-	if (answerState === "answered")
+	if (answerState === "validatingAnswer")
 		progressBarClasses += " question-overview__progress-bar--answered";
 
 	useEffect(() => {
 		let intervalMs = 100;
 
-		if (answerState === "answered") intervalMs = 10;
+		if (answerState !== "unanswered") intervalMs = 10;
 
 		const timerInterval = setInterval(updateTimer, intervalMs);
 

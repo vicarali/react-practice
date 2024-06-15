@@ -11,7 +11,7 @@ function Quiz({ shuffledQuestions, correctAnswers }) {
 
 	function handleAnswerSelection(answer, answerIndex) {
 		setActiveAnswer(answerIndex);
-		setAnswerState("answered");
+		setAnswerState("validatingAnswer");
 		setTimeout(validateAnswer, 1000, answer);
 	}
 
@@ -22,7 +22,7 @@ function Quiz({ shuffledQuestions, correctAnswers }) {
 			setAnswerState("wrong");
 		}
 
-		goToNextStep();
+		setTimeout(goToNextStep, 1000);
 	}
 
 	function goToNextStepAfterTimeRanOut() {
@@ -33,6 +33,8 @@ function Quiz({ shuffledQuestions, correctAnswers }) {
 		setStep((previousStep) => {
 			return previousStep + 1;
 		});
+
+		setAnswerState("unanswered");
 	}
 
 	return (
