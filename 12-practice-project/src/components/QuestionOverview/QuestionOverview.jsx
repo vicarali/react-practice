@@ -1,21 +1,31 @@
 import "./QuestionOverview.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export function QuestionOverview({
 	children,
 	currentStep,
 	goToNextStepAfterTimeRanOut,
 	timerProgress,
-	setTimerProgress
+	setTimerProgress,
+	answerState
 }) {
+	let progressBarClasses = "question-overview__progress-bar";
+
+	if (answerState === "answered")
+		progressBarClasses += " question-overview__progress-bar--answered";
+
 	useEffect(() => {
-		const timerInterval = setInterval(updateTimer, 100);
+		let intervalMs = 100;
+
+		if (answerState === "answered") intervalMs = 10;
+
+		const timerInterval = setInterval(updateTimer, intervalMs);
 
 		return () => {
 			clearInterval(timerInterval);
 			setTimerProgress(100);
 		};
-	}, [currentStep]);
+	}, [currentStep, answerState]);
 
 	function updateTimer() {
 		setTimerProgress((previousProgress) => {
@@ -30,7 +40,7 @@ export function QuestionOverview({
 	return (
 		<div className="question-overview">
 			<progress
-				className="question-overview__progress-bar"
+				className={progressBarClasses}
 				max="100"
 				value={timerProgress}
 			></progress>

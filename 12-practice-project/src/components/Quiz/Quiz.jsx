@@ -6,11 +6,23 @@ import { useState } from "react";
 function Quiz({ shuffledQuestions, correctAnswers }) {
 	const [currentStep, setStep] = useState(0);
 	const [timerProgress, setTimerProgress] = useState(100);
+	const [activeAnswer, setActiveAnswer] = useState();
+	const [answerState, setAnswerState] = useState("unanswered");
 
-	function verifyAnswer(answer) {
+	function handleAnswerSelection(answer, answerIndex) {
+		setActiveAnswer(answerIndex);
+		setAnswerState("answered");
+		setTimeout(validateAnswer, 1000, answer);
+	}
+
+	function validateAnswer(answer) {
 		if (correctAnswers.includes(answer)) {
-			goToNextStep();
+			setAnswerState("correct");
+		} else {
+			setAnswerState("wrong");
 		}
+
+		goToNextStep();
 	}
 
 	function goToNextStepAfterTimeRanOut() {
@@ -30,10 +42,11 @@ function Quiz({ shuffledQuestions, correctAnswers }) {
 				goToNextStepAfterTimeRanOut={goToNextStepAfterTimeRanOut}
 				timerProgress={timerProgress}
 				setTimerProgress={setTimerProgress}
+				answerState={answerState}
 			>
 				{shuffledQuestions[currentStep].text}
 			</QuestionOverview>
-			<Answers verifyAnswer={verifyAnswer}>
+			<Answers handleAnswerSelection={handleAnswerSelection}>
 				{shuffledQuestions[currentStep].answers}
 			</Answers>
 		</main>
