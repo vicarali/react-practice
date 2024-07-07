@@ -48,7 +48,11 @@ function Quiz({ shuffledQuestions, correctAnswers }) {
 			>
 				{shuffledQuestions[currentStep].text}
 			</QuestionOverview>
-			<Answers handleAnswerSelection={handleAnswerSelection}>
+			<Answers
+				handleAnswerSelection={handleAnswerSelection}
+				activeAnswer={activeAnswer}
+				answerState={answerState}
+			>
 				{shuffledQuestions[currentStep].answers}
 			</Answers>
 		</main>
