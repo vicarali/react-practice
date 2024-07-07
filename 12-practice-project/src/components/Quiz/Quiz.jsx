@@ -9,6 +9,8 @@ function Quiz({ shuffledQuestions, correctAnswers }) {
 	const [timerProgress, setTimerProgress] = useState(100);
 	const [activeAnswer, setActiveAnswer] = useState();
 	const [answerState, setAnswerState] = useState("unanswered");
+	const [answeredQuestions, setAnsweredQuestions] = useState([]);
+
 	const lastStep = 7;
 
 	function handleAnswerSelection(answer, answerIndex) {
@@ -18,13 +20,29 @@ function Quiz({ shuffledQuestions, correctAnswers }) {
 	}
 
 	function validateAnswer(answer) {
-		if (correctAnswers.includes(answer)) {
-			setAnswerState("correct");
-		} else {
-			setAnswerState("wrong");
-		}
+		let answerState = "wrong";
+
+		if (correctAnswers.includes(answer)) answerState = "correct";
+
+		setAnswerState(answerState);
+		addAnsweredQuestion(answer, answerState);
 
 		setTimeout(goToNextStep, 1000);
+	}
+
+	function addAnsweredQuestion(answer, answerState) {
+		setAnsweredQuestions((prevAnsweredQuestions) => {
+			const answeredQuestion = {
+				question: shuffledQuestions[currentStep - 1].text,
+				answer: answer,
+				answerState: answerState
+			};
+			const newAnsweredQuestions = [...prevAnsweredQuestions];
+
+			newAnsweredQuestions.push(answeredQuestion);
+
+			return newAnsweredQuestions;
+		});
 	}
 
 	function goToNextStepAfterTimeRanOut() {
