@@ -31,12 +31,23 @@ export default function MealItem({ meal }) {
 
 function addMealToCart(meal, cartContext) {
   cartContext.setCartItems((previousCartItems) => {
-    if (previousCartItems.has(meal.id)) {
+    const newCartItems = new Map(previousCartItems);
+
+    if (newCartItems.has(meal.id)) {
       meal.quantity++;
     } else {
       meal.quantity = 1;
     }
 
-    return previousCartItems.set(meal.id, meal);
+    newCartItems.set(meal.id, meal);
+    cartContext.setCartTotal(calculateCartPriceTotal(newCartItems));
+
+    return newCartItems;
   });
+}
+
+function calculateCartPriceTotal(cartItems) {
+  return Array.from(cartItems).reduce((acc, [itemKey, item]) => {
+    return acc + Number(item.price) * item.quantity;
+  }, 0);
 }

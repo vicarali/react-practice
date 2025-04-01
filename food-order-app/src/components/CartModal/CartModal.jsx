@@ -24,6 +24,8 @@ export default function CartModal({ ref, setIsOpen }) {
         ))}
       </ul>
 
+      <p className={styles.cartTotal}>{cartContext.cartTotal}€</p>
+
       <div className={styles.modalActions}>
         <button
           className={`text-button ${styles.textButton}`}
