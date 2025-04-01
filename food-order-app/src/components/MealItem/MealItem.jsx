@@ -16,7 +16,7 @@ export default function MealItem({ meal }) {
           alt={meal.name}
         />
         <h2 className={styles.mealTitle}>{meal.name}</h2>
-        <small className={styles.mealPrice}>{meal.price}</small>
+        <small className={styles.mealPrice}>{meal.price}€</small>
         <p className={styles.mealDescription}>{meal.description}</p>
         <button
           className={`button ${styles.mealActions}`}
@@ -30,5 +30,13 @@ export default function MealItem({ meal }) {
 }
 
 function addMealToCart(meal, cartContext) {
-  cartContext.setCartItems((previousCartItems) => [...previousCartItems, meal]);
+  cartContext.setCartItems((previousCartItems) => {
+    if (previousCartItems.has(meal.id)) {
+      meal.quantity++;
+    } else {
+      meal.quantity = 1;
+    }
+
+    return previousCartItems.set(meal.id, meal);
+  });
 }

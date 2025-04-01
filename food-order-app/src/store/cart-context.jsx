@@ -1,12 +1,12 @@
 import { createContext, useState } from "react";
 
 export const CartContext = createContext({
-  cartItems: [],
+  cartItems: new Map(),
   setCartItems: () => {},
 });
 
 export function CartContextProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(new Map());
   const contextValue = {
     cartItems,
     setCartItems,

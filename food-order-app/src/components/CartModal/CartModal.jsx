@@ -10,9 +10,16 @@ export default function CartModal({ ref, setIsOpen }) {
       <h2 className={styles.title}>Your Cart</h2>
 
       <ul className={styles.cartListing}>
-        {cartContext.cartItems.map((item) => (
-          <li key={item.id} className={styles.cartItem}>
-            <p className={styles.cartItemParagraph}>{item.name}</p>
+        {Array.from(cartContext.cartItems).map(([itemKey, item]) => (
+          <li key={itemKey} className={styles.cartItem}>
+            <p className={styles.cartItemParagraph}>
+              {item.name} - {item.quantity} x {item.price}€
+            </p>
+            <div className={styles.cartItemActions}>
+              <button className={styles.cartItemActionsButton}>-</button>
+              <p className={styles.cartItemParagraph}>{item.quantity}</p>
+              <button className={styles.cartItemActionsButton}>+</button>
+            </div>
           </li>
         ))}
       </ul>
@@ -24,6 +31,7 @@ export default function CartModal({ ref, setIsOpen }) {
         >
           Close
         </button>
+        <button className="button">Go to Checkout</button>
       </div>
     </dialog>
   );
