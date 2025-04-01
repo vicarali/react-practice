@@ -1,8 +1,12 @@
 import styles from "./MealItem.module.css";
+import {CartContext} from "../../store/cart-context.jsx";
+import {use} from "react";
 
 const LOCAL_HOST_URL = "http://localhost:3000/";
 
 export default function MealItem({meal}) {
+    const cartContext = use(CartContext);
+
     return (
         <li key={meal.id} className={styles.mealItem}>
             <article className={styles.mealInnerWrapper}>
@@ -10,8 +14,14 @@ export default function MealItem({meal}) {
                 <h2 className={styles.mealTitle}>{meal.name}</h2>
                 <small className={styles.mealPrice}>{meal.price}</small>
                 <p className={styles.mealDescription}>{meal.description}</p>
-                <button className={`button ${styles.mealActions}`}>Add to Cart</button>
+                <button className={`button ${styles.mealActions}`} onClick={() => addMealToCart(meal, cartContext)}>
+                    Add to Cart
+                </button>
             </article>
         </li>
     )
+}
+
+function addMealToCart(meal, cartContext) {
+    cartContext.setCartItems((previousCartItems) => [...previousCartItems, meal]);
 }
