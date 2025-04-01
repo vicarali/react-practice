@@ -1,5 +1,6 @@
 import logo from '../../assets/logo.jpg';
 import styles from "./Header.module.css";
+import Cart from "../Cart/Cart.jsx";
 
 export default function Header() {
     return (
@@ -9,7 +10,7 @@ export default function Header() {
                 <h1 className={styles.title}>Reactfood</h1>
             </div>
 
-            <button className="text-button">Cart</button>
+            <Cart/>
         </header>
     )
 }
