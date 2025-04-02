@@ -51,12 +51,6 @@ export function CartContextProvider({ children }) {
     });
   }
 
-  function calculateCartPriceTotal(cartItems) {
-    return Array.from(cartItems).reduce((acc, [itemKey, item]) => {
-      return acc + Number(item.price) * item.quantity;
-    }, 0);
-  }
-
   const contextValue = {
     cartItems,
     cartTotal,
@@ -65,4 +59,10 @@ export function CartContextProvider({ children }) {
   };
 
   return <CartContext value={contextValue}>{children}</CartContext>;
+}
+
+function calculateCartPriceTotal(cartItems) {
+  return Array.from(cartItems).reduce((acc, [itemKey, item]) => {
+    return acc + Number(item.price) * item.quantity;
+  }, 0);
 }
