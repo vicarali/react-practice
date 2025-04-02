@@ -3,21 +3,21 @@ import CartModal from "../CartModal/CartModal.jsx";
 import { CartContext } from "../../store/cart-context.jsx";
 
 export default function Cart() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [orderState, setOrderState] = useState("ordering");
   const modalRef = useRef(null);
   const numberOfCartItems = getTotalOfCartItems();
 
   useEffect(() => {
-    if (isOpen) modalRef.current.showModal();
+    if (orderState === "cart") modalRef.current.showModal();
     else modalRef.current.close();
-  }, [isOpen]);
+  }, [orderState]);
 
   return (
     <>
-      <button className="text-button" onClick={() => setIsOpen(true)}>
+      <button className="text-button" onClick={() => setOrderState("cart")}>
         Cart {numberOfCartItems > 0 ? `(${numberOfCartItems})` : ""}
       </button>
-      <CartModal ref={modalRef} setIsOpen={setIsOpen}></CartModal>
+      <CartModal ref={modalRef} setOrderState={setOrderState}></CartModal>
     </>
   );
 }

@@ -2,7 +2,7 @@ import styles from "./CartModal.module.css";
 import { CartContext } from "../../store/cart-context.jsx";
 import { use } from "react";
 
-export default function CartModal({ ref, setIsOpen }) {
+export default function CartModal({ ref, setOrderState }) {
   const cartContext = use(CartContext);
 
   return (
@@ -39,7 +39,7 @@ export default function CartModal({ ref, setIsOpen }) {
       <div className={styles.modalActions}>
         <button
           className={`text-button ${styles.textButton}`}
-          onClick={() => setIsOpen(false)}
+          onClick={() => setOrderState("ordering")}
         >
           Close
         </button>
