@@ -20,34 +20,11 @@ export default function MealItem({ meal }) {
         <p className={styles.mealDescription}>{meal.description}</p>
         <button
           className={`button ${styles.mealActions}`}
-          onClick={() => addMealToCart(meal, cartContext)}
+          onClick={() => cartContext.addMealToCart(meal)}
         >
           Add to Cart
         </button>
       </article>
     </li>
   );
-}
-
-function addMealToCart(meal, cartContext) {
-  cartContext.setCartItems((previousCartItems) => {
-    const newCartItems = new Map(previousCartItems);
-
-    if (newCartItems.has(meal.id)) {
-      meal.quantity++;
-    } else {
-      meal.quantity = 1;
-    }
-
-    newCartItems.set(meal.id, meal);
-    cartContext.setCartTotal(calculateCartPriceTotal(newCartItems));
-
-    return newCartItems;
-  });
-}
-
-function calculateCartPriceTotal(cartItems) {
-  return Array.from(cartItems).reduce((acc, [itemKey, item]) => {
-    return acc + Number(item.price) * item.quantity;
-  }, 0);
 }

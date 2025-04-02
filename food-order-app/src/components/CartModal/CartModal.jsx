@@ -16,9 +16,19 @@ export default function CartModal({ ref, setIsOpen }) {
               {item.name} - {item.quantity} x {item.price}€
             </p>
             <div className={styles.cartItemActions}>
-              <button className={styles.cartItemActionsButton}>-</button>
+              <button
+                className={styles.cartItemActionsButton}
+                onClick={() => cartContext.removeMealFromCart(item)}
+              >
+                -
+              </button>
               <p className={styles.cartItemParagraph}>{item.quantity}</p>
-              <button className={styles.cartItemActionsButton}>+</button>
+              <button
+                className={styles.cartItemActionsButton}
+                onClick={() => cartContext.addMealToCart(item)}
+              >
+                +
+              </button>
             </div>
           </li>
         ))}
