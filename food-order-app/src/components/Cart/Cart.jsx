@@ -4,12 +4,12 @@ import { CartContext } from "../../store/cart-context.jsx";
 
 export default function Cart() {
   const [orderState, setOrderState] = useState("ordering");
-  const modalRef = useRef(null);
+  const cartModalRef = useRef(null);
   const numberOfCartItems = getTotalOfCartItems();
 
   useEffect(() => {
-    if (orderState === "cart") modalRef.current.showModal();
-    else modalRef.current.close();
+    if (orderState === "cart") cartModalRef.current.showModal();
+    else cartModalRef.current.close();
   }, [orderState]);
 
   return (
@@ -17,7 +17,7 @@ export default function Cart() {
       <button className="text-button" onClick={() => setOrderState("cart")}>
         Cart {numberOfCartItems > 0 ? `(${numberOfCartItems})` : ""}
       </button>
-      <CartModal ref={modalRef} setOrderState={setOrderState}></CartModal>
+      <CartModal ref={cartModalRef} setOrderState={setOrderState}></CartModal>
     </>
   );
 }

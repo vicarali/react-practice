@@ -6,8 +6,8 @@ export default function CartModal({ ref, setOrderState }) {
   const cartContext = use(CartContext);
 
   return (
-    <dialog className={styles.modal} ref={ref}>
-      <h2 className={styles.title}>Your Cart</h2>
+    <dialog className="modal" ref={ref}>
+      <h2 className="modal__title">Your Cart</h2>
 
       <ul className={styles.cartListing}>
         {Array.from(cartContext.cartItems).map(([itemKey, item]) => (
@@ -36,9 +36,9 @@ export default function CartModal({ ref, setOrderState }) {
 
       <p className={styles.cartTotal}>{cartContext.cartTotal}€</p>
 
-      <div className={styles.modalActions}>
+      <div className="modal__actions">
         <button
-          className={`text-button ${styles.textButton}`}
+          className={"text-button modal__close-button"}
           onClick={() => setOrderState("ordering")}
         >
           Close
