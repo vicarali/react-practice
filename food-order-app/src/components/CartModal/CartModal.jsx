@@ -43,7 +43,9 @@ export default function CartModal({ ref, setOrderState }) {
         >
           Close
         </button>
-        <button className="button">Go to Checkout</button>
+        <button className="button" onClick={() => setOrderState("checkout")}>
+          Go to Checkout
+        </button>
       </div>
     </dialog>
   );
