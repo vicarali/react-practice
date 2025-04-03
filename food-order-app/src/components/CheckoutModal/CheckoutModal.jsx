@@ -3,11 +3,13 @@ import { use, useActionState } from "react";
 import styles from "./CheckoutModal.module.css";
 
 export default function CheckoutModal({ ref, setOrderState }) {
-  const cartContext = use(CartContext);
   const [checkoutActionState, checkoutFormAction] = useActionState(
     checkoutAction,
     { errors: null },
   );
+
+  const cartContext = use(CartContext);
+  saveCartToLocalStorage(cartContext);
 
   return (
     <dialog className="modal" ref={ref}>
@@ -17,25 +19,25 @@ export default function CheckoutModal({ ref, setOrderState }) {
 
       <form action={checkoutFormAction}>
         <div className={styles.control}>
-          <label htmlFor="fullName" className={styles.controlLabel}>
+          <label htmlFor="name" className={styles.controlLabel}>
             Full Name
           </label>
           <input
             type="text"
             className={styles.controlInput}
-            name="fullName"
-            defaultValue={checkoutActionState.formFields?.fullName}
+            name="name"
+            defaultValue={checkoutActionState.customer?.name}
           />
         </div>
         <div className={styles.control}>
-          <label htmlFor="emailAddress" className={styles.controlLabel}>
+          <label htmlFor="email" className={styles.controlLabel}>
             E-Mail Address
           </label>
           <input
             type="email"
             className={styles.controlInput}
-            name="emailAddress"
-            defaultValue={checkoutActionState.formFields?.emailAddress}
+            name="email"
+            defaultValue={checkoutActionState.customer?.email}
           />
         </div>
         <div className={styles.control}>
@@ -46,7 +48,7 @@ export default function CheckoutModal({ ref, setOrderState }) {
             type="text"
             className={styles.controlInput}
             name="street"
-            defaultValue={checkoutActionState.formFields?.street}
+            defaultValue={checkoutActionState.customer?.street}
           />
         </div>
         <div className={styles.controlRow}>
@@ -58,7 +60,7 @@ export default function CheckoutModal({ ref, setOrderState }) {
               type="text"
               className={styles.controlInput}
               name="postalCode"
-              defaultValue={checkoutActionState.formFields?.postalCode}
+              defaultValue={checkoutActionState.customer?.postalCode}
             />
           </div>
           <div className={styles.control}>
@@ -69,7 +71,7 @@ export default function CheckoutModal({ ref, setOrderState }) {
               type="text"
               className={styles.controlInput}
               name="city"
-              defaultValue={checkoutActionState.formFields?.city}
+              defaultValue={checkoutActionState.customer?.city}
             />
           </div>
         </div>
@@ -97,28 +99,58 @@ export default function CheckoutModal({ ref, setOrderState }) {
   );
 }
 
+function saveCartToLocalStorage(cartContext) {
+  localStorage.setItem("cartTotal", JSON.stringify(cartContext.cartTotal));
+  localStorage.setItem(
+    "cartItems",
+    JSON.stringify(Array.from(cartContext.cartItems)),
+  );
+}
+
 function checkoutAction(currentState, formData) {
-  const fullName = formData.get("fullName");
-  const emailAddress = formData.get("emailAddress");
+  const name = formData.get("name");
+  const email = formData.get("email");
   const street = formData.get("street");
   const postalCode = formData.get("postalCode");
   const city = formData.get("city");
-  const formFields = {
-    fullName,
-    emailAddress,
+  const customer = {
+    name,
+    email,
     street,
     postalCode,
     city,
   };
 
   if (
-    fullName === "" ||
-    emailAddress === "" ||
+    name === "" ||
+    email === "" ||
     street === "" ||
     postalCode === "" ||
     city === ""
   )
-    return { errors: "Please fill in all fields.", formFields };
+    return { errors: "Please fill in all fields.", customer };
+  else {
+    const order = {
+      order: {
+        customer,
+        cartTotal: localStorage.getItem("cartTotal"),
+        items: localStorage.getItem("cartItems"),
+      },
+    };
 
-  return { errors: null, formFields };
+    (async function () {
+      const response = await fetch("http://localhost:3000/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(order),
+      });
+      const json = await response.json();
+
+      console.log(json);
+    })();
+  }
+
+  return { errors: null, customer };
 }
