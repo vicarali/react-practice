@@ -1,1 +1,1 @@
-My solutions for the **React - The Complete Guide (incl. React Router & Redux)** (Maximilian Schwarzmüller) course tasks
+My React practice repo, including solutions for the **React - The Complete Guide (incl. React Router & Redux)** (Maximilian Schwarzmüller) course tasks and https://reactpractice.dev/ practice exercises
