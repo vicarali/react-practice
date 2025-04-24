@@ -1,0 +1,4 @@
+.countrySelector {
+    width: calc(100vw - 4rem);
+    height: 2rem;
+}

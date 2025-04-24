@@ -1,0 +1,8 @@
+.holidaysListingItem {
+    list-style-type: none;
+}
+
+.holidayName {
+    font-weight: bold;
+    font-style: italic;
+}
