@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <HomePage />,
     loader: countriesLoader,
-    // hydrateFallbackElement: <p>Loading</p>,
+    hydrateFallbackElement: <p>Loading</p>,
   },
 ]);
 
