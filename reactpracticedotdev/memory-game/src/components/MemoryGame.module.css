@@ -1,0 +1,19 @@
+.title {
+    text-align: center;
+}
+
+.gameBoard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    list-style-type: none;
+    padding-inline: 0;
+    gap: 2rem;
+    max-width: 45rem;
+    margin-inline: auto;
+}
+
+.picture {
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
