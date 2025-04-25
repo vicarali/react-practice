@@ -1,16 +1,14 @@
 import styles from "./MemoryGame.module.css";
+import lodash from "lodash";
 
 const MemoryGame = ({ images }) => {
+  const generatedBoardImages = generateBoardImages(images);
+
   return (
     <div>
       <h1 className={styles.title}>Memory Game</h1>
       <ul className={styles.gameBoard}>
-        {images.map((image) => (
-          <li key={image} className={styles.pictureContainer}>
-            <img src={image} className={styles.picture} alt="Game picture" />
-          </li>
-        ))}
-        {images.map((image) => (
+        {generatedBoardImages.map((image) => (
           <li key={image} className={styles.pictureContainer}>
             <img src={image} className={styles.picture} alt="Game picture" />
           </li>
@@ -19,5 +17,11 @@ const MemoryGame = ({ images }) => {
     </div>
   );
 };
+
+function generateBoardImages(images) {
+  const copiedImages = [...images];
+
+  return lodash.shuffle([...images, ...copiedImages]);
+}
 
 export default MemoryGame;

@@ -12,6 +12,21 @@
     margin-inline: auto;
 }
 
+.pictureContainer {
+    position: relative;
+}
+
+.pictureContainer:before {
+    width: 100%;
+    height: 100%;
+    background: grey;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
+
 .picture {
     object-fit: cover;
     width: 100%;
