@@ -1,3 +1,7 @@
+.accordion {
+    list-style-type: none;
+}
+
 .accordionTitle {
     cursor: pointer;
 }

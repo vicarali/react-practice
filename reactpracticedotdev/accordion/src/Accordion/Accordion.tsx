@@ -7,16 +7,16 @@ type AccordionItem = {
 
 export default function Accordion({ items }: { items: AccordionItem[] }) {
   return (
-    <>
+    <ul className={styles.accordion}>
       {items.map(({ title, content }: AccordionItem) => (
-        <>
-          <details key={title}>
+        <li key={title}>
+          <details>
             <summary className={styles.accordionTitle}>{title}</summary>
             <p>{content}</p>
           </details>
           <hr />
-        </>
+        </li>
       ))}
-    </>
+    </ul>
   );
 }
