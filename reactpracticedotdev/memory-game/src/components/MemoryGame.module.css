@@ -27,6 +27,15 @@
     cursor: pointer;
 }
 
+.pictureContainer:hover:before {
+    background: lightblue;
+}
+
+.selected {
+    composes: pictureContainer;
+    content: none;
+}
+
 .picture {
     object-fit: cover;
     width: 100%;
