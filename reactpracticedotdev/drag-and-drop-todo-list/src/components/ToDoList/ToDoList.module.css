@@ -1,0 +1,6 @@
+.columns {
+	display: flex;
+	gap: 4rem;
+	list-style-type: none;
+	padding-inline: unset;
+}

@@ -1,0 +1,10 @@
+.task {
+	padding: 0.5rem;
+	border: 1px solid royalblue;
+	width: fit-content;
+	cursor: pointer;
+}
+
+.task:not(:last-of-type) {
+	margin-bottom: 0.5rem;
+}
