@@ -1,0 +1,19 @@
+.editForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.editFormInput {
+  margin-left: 5px;
+}
+
+.buttonsGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.saveButton {
+  background-color:darkolivegreen;
+  margin-left: 5px;
+}
