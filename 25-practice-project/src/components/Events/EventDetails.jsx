@@ -1,17 +1,24 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 import LoadingIndicator from "../UI/LoadingIndicator.jsx";
 import ErrorBlock from "../UI/ErrorBlock.jsx";
 import Header from "../Header.jsx";
-import { useQuery } from "@tanstack/react-query";
-import { fetchEvent } from "../../utils/http.js";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { deleteEvent, fetchEvent, queryClient } from "../../utils/http.js";
 
 export default function EventDetails() {
+	const navigate = useNavigate();
 	const eventId = useParams().id;
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: ["events", { id: eventId }],
 		queryFn: ({ signal }) => fetchEvent({ signal, id: eventId })
 	});
-	console.log(data);
+	const { mutate } = useMutation({
+		mutationFn: () => deleteEvent({ id: eventId }),
+		onSuccess: () => {
+			queryClient.invalidateQueries();
+			navigate("/events");
+		}
+	});
 
 	return (
 		<>
@@ -31,7 +38,7 @@ export default function EventDetails() {
 					<header>
 						<h1>{data.title}</h1>
 						<nav>
-							<button>Delete</button>
+							<button onClick={mutate}>Delete</button>
 							<Link to="edit">Edit</Link>
 						</nav>
 					</header>
